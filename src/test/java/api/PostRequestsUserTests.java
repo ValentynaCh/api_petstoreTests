@@ -18,7 +18,7 @@ public class PostRequestsUserTests extends BaseTest {
         UserModel user = new UserData().userCreationData();
         Response response = userController.createUser(user);
         assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        userController.deleteUser(user.getUsername());
+        //userController.deleteUser(user.getUsername());
     }
 
     @Test(description = "Verify that there is a possibility to create a randomly generated list of users on the backend",

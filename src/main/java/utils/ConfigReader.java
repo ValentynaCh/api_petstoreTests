@@ -70,4 +70,28 @@ public class ConfigReader {
         }
         return userLoginPath;
     }
+
+    public String getDataBaseConnection(){
+        String dataBaseConnection = properties.getProperty("database.url");
+        if(dataBaseConnection == null){
+            logger.error("DataBase connection string is not specified in {} file.", FILE_NAME);
+        }
+        return dataBaseConnection;
+    }
+
+    public String getUserDataBaseName(){
+        String userDataBaseName = properties.getProperty("database.username");
+        if(userDataBaseName == null){
+            logger.error("user DataBase name is not specified in {} file.", FILE_NAME);
+        }
+        return userDataBaseName;
+    }
+
+    public String getUserDataBasePassword(){
+        String userDataBasePassword = properties.getProperty("database.password");
+        if(userDataBasePassword == null){
+            logger.error("user DataBase password is not specified in {} file.", FILE_NAME);
+        }
+        return userDataBasePassword;
+    }
 }

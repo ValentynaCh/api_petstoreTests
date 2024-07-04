@@ -12,6 +12,7 @@ import org.apache.http.HttpStatus;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import utils.ConfigReader;
+import utils.DatabaseUtils;
 
 
 public class UserController extends BaseController {
@@ -24,7 +25,11 @@ public class UserController extends BaseController {
 
     public Response createUser(UserModel user) {
         logger.info("Create a user");
-        return postRequest(userCreatePath, user);
+        Response response = postRequest(userCreatePath, user);
+        if (response.getStatusCode() == 200) {
+            DatabaseUtils.insertUser(user);
+        }
+        return response;
     }
 
     public Response createUsersList(int usersCount) {
@@ -38,7 +43,11 @@ public class UserController extends BaseController {
 
     public Response deleteUser(String username) {
         logger.info("Delete a user");
-        return deleteRequest(userCreatePath + "/" + username);
+        Response response = deleteRequest(userCreatePath + "/" + username);
+        if (response.getStatusCode() == 200) {
+            DatabaseUtils.deleteUser(username);
+        }
+        return response;
     }
 
     public Response editUserFirstAndLastName(UserModel user, String firstName, String lastName) {
