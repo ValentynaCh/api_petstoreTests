@@ -1,13 +1,14 @@
 package controllers;
 
+import configReaders.CommonConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import utils.ConfigReader;
+import configReaders.UserConfigReader;
 
 public class BaseController {
-    public ConfigReader configReader = new ConfigReader();
-    public final String BASE_URL_PATH = configReader.getBaseUrl() + configReader.getApiVersion();
+    public CommonConfigReader commonConfigReader = new CommonConfigReader();
+    public final String BASE_URL_PATH = commonConfigReader.getBaseUrl() + commonConfigReader.getApiVersion();
 
     protected static final String HEADER_CONTENT_TYPE = "Content-Type";
     protected static final String APPLICATION_JSON = "application/json";

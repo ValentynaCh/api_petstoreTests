@@ -1,7 +1,7 @@
 package data.factory;
 
 import com.github.javafaker.Faker;
-import models.UserModel;
+import models.userModels.UserModel;
 
 import java.util.Locale;
 
@@ -10,7 +10,7 @@ public class UserData {
     public UserModel user = new UserModel();
     Faker faker = new Faker(new Locale("en_Us"));
 
-    public UserModel userCreationData()
+    public UserModel generateUser()
     {
         user.setId(faker.number().randomDigitNotZero());
         user.setUsername(faker.name().username());

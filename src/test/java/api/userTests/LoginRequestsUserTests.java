@@ -1,9 +1,10 @@
-package api;
+package api.userTests;
 
+import api.BaseTest;
 import controllers.UserController;
 import data.factory.UserData;
 import io.restassured.response.Response;
-import models.UserModel;
+import models.userModels.UserModel;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,7 +14,7 @@ public class LoginRequestsUserTests extends BaseTest {
     @Test(description = "Verify that there is a possibility to login into the system by valid User on the backend",
             groups = {"UserAPI", "Smoke", "APITests"})
     public void loginUserWithValidCredentialsTest(){
-        UserModel user = new UserData().userCreationData();
+        UserModel user = new UserData().generateUser();
         String userName = user.getUsername();
         String userPassword = user.getPassword();
         userController.createUser(user);
@@ -25,7 +26,7 @@ public class LoginRequestsUserTests extends BaseTest {
     @Test(description = "Verify that there is not a possibility to login into the system by valid User on the backend",
             groups = {"UserAPI", "Smoke", "APITests"})
     public void loginUserWithInvalidCredentialsTest(){
-        UserModel user = new UserData().userCreationData();
+        UserModel user = new UserData().generateUser();
         String userName = user.getUsername();
         String userPassword = user.getPassword();
         Response response = userController.loginUser(userName, userPassword);

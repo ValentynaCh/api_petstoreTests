@@ -1,4 +1,4 @@
-package models;
+package models.userModels;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -4,12 +4,21 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import listeners.RestAPITestListener;
+import utils.DatabaseDumpGenerator;
+
 
 @Listeners(RestAPITestListener.class)
 public class BaseTest {
+
     private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+
+    @BeforeSuite
+    public void generateDatabase() {
+        Class<DatabaseDumpGenerator> clazz = DatabaseDumpGenerator.class;
+    }
 
     @AfterSuite
     public void printReport(ITestContext context) {

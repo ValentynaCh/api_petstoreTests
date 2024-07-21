@@ -1,9 +1,10 @@
-package api;
+package api.userTests;
 
+import api.BaseTest;
 import controllers.UserController;
 import data.factory.UserData;
 import io.restassured.response.Response;
-import models.UserModel;
+import models.userModels.UserModel;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -15,9 +16,10 @@ public class PostRequestsUserTests extends BaseTest {
     @Test(description = "Verify that there is a possibility to create a randomly generated User on the backend",
             groups = {"UserAPI", "Smoke", "APITests"})
     public void createUserTest() {
-        UserModel user = new UserData().userCreationData();
+        UserModel user = new UserData().generateUser();
         Response response = userController.createUser(user);
         assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+
         //userController.deleteUser(user.getUsername());
     }
 
